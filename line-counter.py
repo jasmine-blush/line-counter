@@ -1,3 +1,4 @@
+from os import path
 from os import scandir
 
 IGNORE_DIRS = [
@@ -20,9 +21,9 @@ def scan_directory(path, exec_name):
     return files
 
             
-code_files = scan_directory(".\\", __file__.split("\\")[-1])
+code_files = scan_directory("./", path.basename(__file__)
 line_count = 0
 for path in code_files:
-    with open(path) as file:
+    with open(path, encoding="utf-8", errors="ignore") as file:
         line_count += sum(1 for _ in file)
 print(str(line_count) + " lines of code in " + str(len(code_files)) + " files")
